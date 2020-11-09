@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 
-
-@RequestMapping("/opportunities")
+@RestSchema(schemaId = "label")
+@RequestMapping("/label")
 public class LabelController {
 
     @Resource

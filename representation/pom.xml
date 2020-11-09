@@ -8,6 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
+	<packaging>jar</packaging>
 	<groupId>com.shinemo.ddd.demo</groupId>
 	<artifactId>representation</artifactId>
 	<version>${model-version}</version>
@@ -48,13 +49,40 @@
 			<groupId>org.apache.servicecomb</groupId>
 			<artifactId>java-chassis-spring-boot-starter-servlet</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.servicecomb</groupId>
+			<artifactId>transport-rest-vertx</artifactId>
+		</dependency>
 	</dependencies>
 
+
 	<build>
+		<finalName>ddd-demo</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includeSystemScope>true</includeSystemScope>
+					<mainClass>com.ddd.demo.RepresentationApplication</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerArgument>-parameters</compilerArgument>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
